@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://gehrig:Bruins22!@azcentralscraper.yfewj.mongodb.net/test?retryWrites=true"
+    "mongoURI": "mongodb+srv://gehrig:Bruins22!@azcentralscraper.yfewj.mongodb.net/test?retryWrites=true",
+    "jwtSecret": "myserettoken"
 }

@@ -1,0 +1,13 @@
+.ResultsContainer {
+    display: flex;
+
+    height: 79vh;
+}
+
+.ResultsContainer .ResultsList {
+    flex: 2;
+}
+
+.ResultsContainer .SelectedResult {
+    flex: 3;
+}

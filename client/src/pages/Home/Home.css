@@ -1,0 +1,14 @@
+.Home {
+    height: calc(100% - 3.25rem);
+}
+
+.Home .SearchForm {
+    height: 12.5%;
+}
+
+.Home .Container {
+    max-height: 87.5%;
+
+    padding: 10px;
+}
+

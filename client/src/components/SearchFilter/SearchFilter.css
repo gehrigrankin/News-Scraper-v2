@@ -1,0 +1,6 @@
+.SearchFilter {
+    display: flex;
+
+    border-bottom: 2px solid hsl(0,0%,85%);
+}
+

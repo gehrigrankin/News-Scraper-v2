@@ -1,0 +1,20 @@
+.Result {
+    text-align: left;
+
+    padding: 7.5px 20px;
+    border-bottom: 1px solid hsl(0,0%,85%);
+}
+
+.Result .title {
+    margin-bottom: 0;
+}
+
+.Result .description {
+    color: hsl(0,0%,55%);
+}
+
+.Result .time {
+    color: hsl(91, 50%, 39%);
+    font-weight: normal;
+    font-size: 16px;
+}

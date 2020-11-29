@@ -1,0 +1,38 @@
+.SelectedResult {
+    padding: 1.5rem 1rem;
+    overflow: scroll;
+}
+
+.SelectedResult .header {
+    position: relative;
+    display: block;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+/* .SelectedResult .title {
+    float: left;
+} */
+.SelectedResult .time {
+    color: hsl(91, 50%, 39%);
+    font-weight: 600;
+    font-size: 16px;
+}
+.SelectedResult .article,  .SelectedResult .article .link {
+    display: block;
+}
+
+.SelectedResult .article .link-list {
+    list-style-type: square;
+    margin: auto 2rem;
+}
+
+.SelectedResult .content-p {
+    margin: 10px auto;
+}
+
+.SelectedResult hr{
+    margin: 1rem 0;
+
+    background-color: hsl(0,0%,90%);
+}

@@ -1,0 +1,9 @@
+.SearchForm {
+    display: flex;
+    align-items: center;
+
+    background-color: white;
+
+    border-bottom: 2px solid lightgrey;
+    padding: 1vh 10vw;
+}

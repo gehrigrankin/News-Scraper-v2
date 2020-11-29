@@ -18,7 +18,7 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    topic: {
+    time: {
         type: String,
         required: true
     },

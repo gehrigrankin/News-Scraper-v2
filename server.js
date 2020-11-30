@@ -17,6 +17,7 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/article', require('./routes/api/article'));
+app.use('/api/azc', require('./routes/api/azc'));
 
 const port = process.env.PORT || 8080;
 
@@ -29,7 +30,7 @@ app.get('/ping', function (req, res) {
 });
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 if (process.env.NODE_ENV === 'production') {

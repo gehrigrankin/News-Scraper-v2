@@ -24,38 +24,38 @@ class Home extends Component {
         this.getArticles();
     }
 
-    componentDidUpdate(){
-        if (this.state.searchResults === []){
-            this.getArticles();
-        }
-    }
+    // componentDidUpdate(){
+    //     if (this.state.searchResults === []){
+    //         this.getArticles();
+    //     }
+    // }
 
-    componentWillMount() {
-        this.getArticles();
-        const selected = this.state.searchResults.filter(article => {
-            return article.selected === true
-        }) 
+    // componentWillMount() {
+    //     this.getArticles();
+    //     const selected = this.state.searchResults.filter(article => {
+    //         return article.selected === true
+    //     }) 
 
-        this.setState({ selectedResult: selected})
-    }
+    //     this.setState({ selectedResult: selected})
+    // }
 
     getArticles = () => {
-        API.getAllArticles()
+        API.getArticles()
             .then(res => {
-                console.log("RES", res.data);
-                this.setState({
-                    searchResults: res.data   
-                })
+                // console.log("RES", res.data);
+                // this.setState({
+                //     searchResults: res.data   
+                // })
             })
             .catch(err => console.log(err));
     };
 
-    handleArticleSave = () => {
-        for (let article of this.state.searchResults){
-            API.saveArticle(article);
-        }
-        // API.saveArticle(this.state.searchResults[0]);
-    };
+    // handleArticleSave = () => {
+    //     for (let article of this.state.searchResults){
+    //         API.saveArticle(article);
+    //     }
+    //     // API.saveArticle(this.state.searchResults[0]);
+    // };
 
     // handleArticleSave = id => {
     //     const article = this.state.articles.find(article => article._id === id);
@@ -63,37 +63,37 @@ class Home extends Component {
     // };
 
     handleFormSubmit = event => {
-        // event.preventDefault();
-        // this.getArticles();
+        event.preventDefault();
+        this.getArticles();
         // console.log("i made it")
     };
 
-    handleSelected = (event) => {
-        this.setState(() => {
-            return {
-                selectedResult: {} 
-            }
-        })
-        const id = event.target.closest(".Result").dataset.id;
-        console.log(id);
+    // handleSelected = (event) => {
+    //     this.setState(() => {
+    //         return {
+    //             selectedResult: {} 
+    //         }
+    //     })
+    //     const id = event.target.closest(".Result").dataset.id;
+    //     console.log(id);
 
-        API.getSelectedArticle(id)
-            .then(res => {
-                console.log("selected RES", res);
+    //     API.getSelectedArticle(id)
+    //         .then(res => {
+    //             console.log("selected RES", res);
 
-                API.getScrapedArticle(id).then(res => {
-                    if(res.data.id == id){
-                        this.setState(() => {
-                            return {
-                                selectedResult: res.data 
-                            }
-                        })
-                    }
-                })
+    //             API.getScrapedArticle(id).then(res => {
+    //                 if(res.data.id == id){
+    //                     this.setState(() => {
+    //                         return {
+    //                             selectedResult: res.data 
+    //                         }
+    //                     })
+    //                 }
+    //             })
 
-            })
-            .catch(err => console.log(err))
-    }
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
     render() {
         return (
@@ -120,5 +120,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-

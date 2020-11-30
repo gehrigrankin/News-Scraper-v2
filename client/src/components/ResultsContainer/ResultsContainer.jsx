@@ -14,9 +14,9 @@ const ResultsContainer = (props) => {
                 timeRange={props.timeRange}
                 handleSelected={props.handleSelected}
             />
-            <SelectedResult 
+            {/* <SelectedResult 
                 selected={props.selected}
-            />
+            /> */}
         </div>
     )
 }

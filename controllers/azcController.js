@@ -11,7 +11,7 @@ module.exports = {
 
             // Grab the body of the html with request
             axios.get(mainSrc)
-                .then(function (response) {
+                .then(async function (response) {
                     const $ = cheerio.load(response.data);
                     const results = [];
 
@@ -35,14 +35,44 @@ module.exports = {
                             return;
                         }
 
-                        results.push(result);
+                        // await getFullDoc(result)
+                        results.push(result)
                     })
-
-                    console.log(results);
+                    res.json(results)
                 })
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error')
         }
     }
+}
+
+async function getFullDoc(result) {
+    return (
+        axios.get(result.src)
+            .then(async function (response) {
+                const $ = cheerio.load(response.data);
+
+                result.text = []
+
+                $('.gnt_pr').each(async function (i, element) {
+                    result.author = $(this)
+                        .children('.gnt_ar_by')
+                        .children('.gnt_ar_by_a')
+                        .text();
+                    result.company = $(this)
+                        .children('.gnt_ar_by')
+                        .children('.gnt_ar_pb')
+                        .text();
+
+
+                    $(this).children('.gnt_ar_b')
+                        .children('.gnt_ar_b_p')
+                        .each(async function (i, element) {
+                            result.text.push($(this).text())
+                        })
+                })
+                resultsArr.push(result)
+            })
+    )
 }

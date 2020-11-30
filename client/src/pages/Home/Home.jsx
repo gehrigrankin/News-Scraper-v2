@@ -42,10 +42,10 @@ class Home extends Component {
     getArticles = () => {
         API.getArticles()
             .then(res => {
-                // console.log("RES", res.data);
-                // this.setState({
-                //     searchResults: res.data   
-                // })
+                console.log("RES", res.data);
+                this.setState({
+                    searchResults: res.data   
+                })
             })
             .catch(err => console.log(err));
     };

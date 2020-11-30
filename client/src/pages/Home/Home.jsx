@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 import "./Home.css"
 
@@ -20,7 +20,7 @@ class Home extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getArticles();
     }
 
@@ -44,7 +44,7 @@ class Home extends Component {
             .then(res => {
                 console.log("RES", res.data);
                 this.setState({
-                    searchResults: res.data   
+                    searchResults: res.data
                 })
             })
             .catch(err => console.log(err));
@@ -68,44 +68,49 @@ class Home extends Component {
         // console.log("i made it")
     };
 
-    // handleSelected = (event) => {
-    //     this.setState(() => {
-    //         return {
-    //             selectedResult: {} 
-    //         }
-    //     })
-    //     const id = event.target.closest(".Result").dataset.id;
-    //     console.log(id);
+    handleSelected = (event) => {
+        // this.setState(() => {
+        //     return {
+        //         selectedResult: {} 
+        //     }
+        // })
+        const src = event.target.closest(".Result").dataset.src;
 
-    //     API.getSelectedArticle(id)
-    //         .then(res => {
-    //             console.log("selected RES", res);
+        API.getSelectedArticle(src)
+            .then(res => {
+                console.log("selected RES", res);
 
-    //             API.getScrapedArticle(id).then(res => {
-    //                 if(res.data.id == id){
-    //                     this.setState(() => {
-    //                         return {
-    //                             selectedResult: res.data 
-    //                         }
-    //                     })
-    //                 }
-    //             })
+                this.setState(() => {
+                    return {
+                        selectedResult: res.data
+                    }
+                })
 
-    //         })
-    //         .catch(err => console.log(err))
-    // }
+                // API.getScrapedArticle(id).then(res => {
+                //     if(res.data.id == id){
+                //         this.setState(() => {
+                //             return {
+                //                 selectedResult: res.data 
+                //             }
+                //         })
+                //     }
+                // })
+
+            })
+            .catch(err => console.log(err))
+    }
 
     render() {
         return (
             <div className="Home">
-                <SearchForm 
-                    className="SearchForm" 
+                <SearchForm
+                    className="SearchForm"
                     handleArticleSave={this.handleArticleSave}
                     submit={this.handleFormSubmit}
                 />
                 <Container className="Container">
                     {/* <SearchFilter /> */}
-                    <ResultsContainer 
+                    <ResultsContainer
                         results={this.state.searchResults}
                         selected={this.state.selectedResult}
                         topic={this.state.filters.searchTopic}

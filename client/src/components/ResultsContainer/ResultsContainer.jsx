@@ -7,16 +7,16 @@ import SelectedResult from '../../components/SelectedResult';
 
 const ResultsContainer = (props) => {
     return (
-        <div className="ResultsContainer">
+        <div className="ResultsContainer box-shadow">
             <ResultsList
                 results={props.results} 
                 topic={props.topic}
                 timeRange={props.timeRange}
                 handleSelected={props.handleSelected}
             />
-            {/* <SelectedResult 
+            <SelectedResult 
                 selected={props.selected}
-            /> */}
+            />
         </div>
     )
 }

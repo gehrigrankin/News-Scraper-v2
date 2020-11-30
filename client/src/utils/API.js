@@ -9,9 +9,10 @@ export default {
   getArticles: function(params) {
     return axios.get("/api/azc");
   },
-  // getSelectedArticle: function(id){
-  //   return axios.get("/api/articles/" + id)
-  // },
+  getSelectedArticle: function(src){
+    console.log(src)
+    return axios.post("/api/azc/selected", {src})
+  },
   // getScrapedArticle: function(id) {
   //   return axios.get(`/api/articles/${id}/scraped`)
   // },

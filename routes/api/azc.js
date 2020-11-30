@@ -6,4 +6,6 @@ const auth = require('../../middleware/auth');
 // Matches with "/api/azc"
 router.get('/', azcController.findAll);
 
+router.post('/selected', azcController.findSelected); 
+
 module.exports = router;

@@ -8,7 +8,7 @@ const Navbar = () => {
         <nav className="navbar is-success">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/">
-                    New york Times Scraper
+                    AZ Central Scraper
                 </Link>
             
                 <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">

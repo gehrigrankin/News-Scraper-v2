@@ -9,8 +9,8 @@ const SelectedResult = (props) => {
     const selected = props.selected ? 
     props.selected : "";
         
-    const content = selected.content ? 
-    selected.content : [];
+    const text = selected.text ? 
+    selected.text : [];
 
     const links = selected.links ? 
     selected.links : [];
@@ -25,7 +25,7 @@ const SelectedResult = (props) => {
 
             <div className="article">
                 {
-                    content.map((x, i) => {
+                    text.map((x, i) => {
                         return (
                             <p key={i}
                                 className="content-p"

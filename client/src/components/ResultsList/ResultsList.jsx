@@ -7,7 +7,6 @@ import Result from './Result'
 const ResultsList = props => {
     return (
         <Field classProp="ResultsList">
-          
             <div className="filter-var">
                 <strong>Topic:</strong> {props.topic} &emsp;&emsp;
                 <strong>From:</strong> {props.timeRange}
@@ -18,18 +17,16 @@ const ResultsList = props => {
                     return (
                         <Result 
                             key={index}
-                            id={article._id}
+                            id={article.id}
                             title={article.headline}
-                            description={article.summary}
                             topic={article.topic}
                             date={article.time}
+                            src={article.src}
                             handleSelected={props.handleSelected}
                         />
                     )
                 })}
             </div>
-                
-     
         </Field>
     )
 }

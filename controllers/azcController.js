@@ -44,35 +44,54 @@ module.exports = {
             console.error(err.message);
             res.status(500).send('Server Error')
         }
-    }
-}
+    },
+    findSelected: async (req, res) => {
+        try {
+            const src = req.body.src;
 
-async function getFullDoc(result) {
-    return (
-        axios.get(result.src)
-            .then(async function (response) {
-                const $ = cheerio.load(response.data);
+            axios.get(src)
+                .then(async function (response) {
+                    const $ = cheerio.load(response.data);
+                    result = {};
+                    result.text = [];
 
-                result.text = []
+                    $('.gnt_cw').each(async function (i, element) {
+                        // headline time topic
+                        result.headline = $(this)
+                            .children('.gnt_pr')
+                            .children('.gnt_ar_hl')
+                            .text();
+                        result.topic = $(this)
+                            .children('.gnt_ar_lbl')
+                            .attr('aria-label');
+                        result.time = $(this)
+                            .children('.gnt_pr')
+                            .children('.gnt_ar_dt')
+                            .attr('aria-label');
+                        result.author = $(this)
+                            .children('.gnt_pr')
+                            .children('.gnt_ar_by')
+                            .children('.gnt_ar_by_a')
+                            .text();
+                        result.company = $(this)
+                            .children('.gnt_pr')
+                            .children('.gnt_ar_by')
+                            .children('.gnt_ar_pb')
+                            .text();
 
-                $('.gnt_pr').each(async function (i, element) {
-                    result.author = $(this)
-                        .children('.gnt_ar_by')
-                        .children('.gnt_ar_by_a')
-                        .text();
-                    result.company = $(this)
-                        .children('.gnt_ar_by')
-                        .children('.gnt_ar_pb')
-                        .text();
-
-
-                    $(this).children('.gnt_ar_b')
-                        .children('.gnt_ar_b_p')
-                        .each(async function (i, element) {
-                            result.text.push($(this).text())
-                        })
+                        $(this).children('.gnt_pr')
+                            .children('.gnt_ar_b')
+                            .children('.gnt_ar_b_p')
+                            .each(async function (i, element) {
+                                result.text.push($(this).text())
+                            })
+                    })
+                    res.json(result)
                 })
-                resultsArr.push(result)
-            })
-    )
+        } catch (error) {
+            console.error(err.message);
+            res.status(500).send('Server Error')
+        }
+
+    }
 }

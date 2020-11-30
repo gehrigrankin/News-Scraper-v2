@@ -3,21 +3,15 @@ import React from 'react';
 import './Result.css'
 
 const Result = (props) => {
-    let desc = props.description ? 
-        props.description.substring(0,100) + "..." : null;
-
+    // console.log(props)
     return (
-        <div className="Result" data-id={props.id} onClick={props.handleSelected}>
-            <p className="title is-5">
-                {props.title}
-
-                
-            </p>
+        <div className="Result" data-src={props.src} onClick={props.handleSelected}>
             <p className="time">
                {props.topic} - {props.date}
             </p>
-
-            <p className="description">{desc}</p>
+            <p className="title is-5">
+                {props.title}
+            </p>
         </div>
     )
 }

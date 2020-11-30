@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
@@ -8,17 +8,23 @@ import "./Navbar.css";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
-        <a onClick={logout} href="#!">
-            <span class="icon">
-                <i class="fas fa-home"></i>
-            </span>{' '}
-            Logout
-        </a>
+        <Fragment>
+            <Link className="navbar-item" to="/saved">Saved Articles</Link>
+            <a onClick={logout} href="#!">
+                <span class="icon">
+                    <i class="fas fa-home"></i>
+                </span>{' '}
+                Logout
+            </a>
+        </Fragment>
     )
 
-    // const guestLinks = (
-
-    // )
+    const guestLinks = (
+        <Fragment>
+            <Link className="navbar-item" to="/register">Sign Up</Link>
+            <Link className="navbar-item" to="/login">Login</Link>
+        </Fragment>
+    )
 
     return (
         <nav className="navbar is-success">
@@ -35,9 +41,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
             </div>
             <div className="navbar-menu">
                 <div className="navbar-end">
-                    <Link className="navbar-item" to="/saved">Saved Articles</Link>
-                    <Link className="navbar-item" to="/">Home</Link>
-                    { !loading && isAuthenticated ? authLinks : null }
+                    <Link className="navbar-item" to="/home">Home</Link>
+                    { !loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>) }
                 </div>
             </div>
 

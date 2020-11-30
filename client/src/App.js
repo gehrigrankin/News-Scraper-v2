@@ -6,7 +6,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
+import Saved from "./pages/Saved";
 import Alert from "./components/Alert";
+import PrivateRoute from "./components/routing/PrivateRoute"
 
 //Redux
 import { Provider } from 'react-redux';
@@ -36,8 +38,8 @@ const App = () => {
             <Route exact path="/home" component={Home} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <PrivateRoute exact path="/saved" component={Saved} />
             {/* 
-          <Route exact path="/saved" component={Saved} />
           <Route component={NoMatch} /> */}
           </Switch>
         </div>

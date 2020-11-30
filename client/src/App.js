@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
+import Alert from "./components/Alert";
 
 //Redux
 import { Provider } from 'react-redux';
@@ -18,6 +19,7 @@ const App = () => (
     <Router>
       <div className="App">
         <Navbar />
+        <Alert />
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/home" component={Home} />

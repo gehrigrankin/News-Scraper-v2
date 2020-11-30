@@ -7,10 +7,15 @@ import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 
+//Redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 import './App.scss';
 
 const App = () => (
-  <Router>
+  <Provider store={store}>
+    <Router>
       <div className="App">
         <Navbar />
         <Switch>
@@ -24,6 +29,7 @@ const App = () => (
         </Switch>
       </div>
     </Router>
+  </Provider>
 )
 
 export default App;

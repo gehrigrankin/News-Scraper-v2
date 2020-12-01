@@ -10,15 +10,28 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    summary: {
+    headlineSummary: {
         type: String,
+        required: true
+    },
+    author: {
+        type: String
+    },
+    company: {
+        type: String
+    },
+    text: {
+        type: Array,
         required: true
     },
     topic: {
+        type: String
+    },
+    time: {
         type: String,
         required: true
     },
-    time: {
+    timeSummary: {
         type: String,
         required: true
     },

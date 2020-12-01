@@ -13,7 +13,7 @@ const ResultsList = props => {
             </div>
 
             <div className="article-list">
-                {props.results.map((article, index) => {
+                {Array.isArray(props.results) ? props.results.map((article, index) => {
                     return (
                         <Result 
                             key={index}
@@ -25,7 +25,7 @@ const ResultsList = props => {
                             handleSelected={props.handleSelected}
                         />
                     )
-                })}
+                }) : null}
             </div>
         </Field>
     )

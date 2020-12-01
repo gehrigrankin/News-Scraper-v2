@@ -1,27 +1,45 @@
 import React from 'react';
 import Field from '../Container/Field';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import API from "../../utils/API";
+import { useLocation } from 'react-router-dom'
 
 import './SelectedResult.css'
 
 const SelectedResult = (props) => {
     console.log(props.selected);
+    // console.log(props.auth);
 
-    const selected = props.selected ? 
-    props.selected : "";
-        
-    const text = selected.text ? 
-    selected.text : [];
+    const currentPath = useLocation().pathname;
 
-    const links = selected.links ? 
-    selected.links : [];
+    const selected = props.selected ?
+        props.selected : "";
+
+    const text = selected.text ?
+        selected.text : [];
+
+    const { src } = selected;
+
+    const saveArticle = () => {
+        API.saveArticle({...selected, user: props.auth.user})
+    }
 
     return (
         <Field classProp="SelectedResult has-text-left">
             <div className="header">
-                <p className="title">{selected.headline}</p>
-                <p className="time has-text-right">{selected.topic} | {selected.time}</p>
+                <p className="title">{selected.headlineSummary}</p>
+                <p className="time has-text-right">{selected.topic} | {selected.timeSummary}</p>
+                {console.log()}
+                { props.auth.isAuthenticated && 
+                    currentPath !== '/saved' ? 
+                        <div className="mt-2 w-100 has-text-right">
+                            <button onClick={saveArticle} className="button is-success is-outlined">
+                                Save Article
+                            </button>
+                        </div> : null}
             </div>
-            <hr/>
+            <hr />
 
             <div className="article">
                 {
@@ -31,24 +49,24 @@ const SelectedResult = (props) => {
                                 className="content-p"
                             >
                                 {x}
-                            </p> 
+                            </p>
                         )
                     })
                 }
-                <ul className="link-list">
-                {
-                    links.map((x, i) => {
-                        return (
-                            <li key={i}><a className="link" href={"https://www.azcentral.com" + x.src}>
-                                {x.text}
-                            </a></li>
-                        )
-                    })
-                }
-                </ul>
+            </div>
+            <div className="links">
+                <a target="_blank" rel="noreferrer" href={src}>{src}</a>
             </div>
         </Field>
     )
 }
 
-export default SelectedResult;
+SelectedResult.propTypes = {
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(SelectedResult);

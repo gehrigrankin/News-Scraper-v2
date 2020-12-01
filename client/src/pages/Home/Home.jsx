@@ -42,9 +42,20 @@ class Home extends Component {
     getArticles = () => {
         API.getArticles()
             .then(res => {
-                console.log("RES", res.data);
                 this.setState({
                     searchResults: res.data
+                }, () => {
+                    API.getSelectedArticle(res.data[0])
+                        .then(res => {
+                            console.log("selected RES", res);
+
+                            this.setState(() => {
+                                return {
+                                    selectedResult: res.data
+                                }
+                            })
+                        })
+                        .catch(err => console.log(err))
                 })
             })
             .catch(err => console.log(err));
@@ -76,7 +87,10 @@ class Home extends Component {
         // })
         const src = event.target.closest(".Result").dataset.src;
 
-        API.getSelectedArticle(src)
+        const result = this.state.searchResults.find(result => result.src == src);
+        console.log(result)
+
+        API.getSelectedArticle(result)
             .then(res => {
                 console.log("selected RES", res);
 
@@ -85,17 +99,6 @@ class Home extends Component {
                         selectedResult: res.data
                     }
                 })
-
-                // API.getScrapedArticle(id).then(res => {
-                //     if(res.data.id == id){
-                //         this.setState(() => {
-                //             return {
-                //                 selectedResult: res.data 
-                //             }
-                //         })
-                //     }
-                // })
-
             })
             .catch(err => console.log(err))
     }
@@ -103,11 +106,11 @@ class Home extends Component {
     render() {
         return (
             <div className="Home">
-                <SearchForm
+                {/* <SearchForm
                     className="SearchForm"
                     handleArticleSave={this.handleArticleSave}
                     submit={this.handleFormSubmit}
-                />
+                /> */}
                 <Container className="Container">
                     {/* <SearchFilter /> */}
                     <ResultsContainer

@@ -1,7 +1,7 @@
 .ResultsContainer {
     display: flex;
 
-    height: 79vh;
+    height: 100%;
 }
 
 .ResultsContainer .ResultsList {

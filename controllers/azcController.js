@@ -47,24 +47,25 @@ module.exports = {
     },
     findSelected: async (req, res) => {
         try {
-            const src = req.body.src;
+            const { selectedResult } = req.body;
 
-            axios.get(src)
+            axios.get(selectedResult.src)
                 .then(async function (response) {
                     const $ = cheerio.load(response.data);
                     result = {};
                     result.text = [];
+                    result.src = selectedResult.src;
+                    result.topic = selectedResult.topic
+                    result.headline = selectedResult.headline
+                    result.time = selectedResult.time
+
 
                     $('.gnt_cw').each(async function (i, element) {
-                        // headline time topic
-                        result.headline = $(this)
+                        result.headlineSummary = $(this)
                             .children('.gnt_pr')
                             .children('.gnt_ar_hl')
                             .text();
-                        result.topic = $(this)
-                            .children('.gnt_ar_lbl')
-                            .attr('aria-label');
-                        result.time = $(this)
+                        result.timeSummary = $(this)
                             .children('.gnt_pr')
                             .children('.gnt_ar_dt')
                             .attr('aria-label');

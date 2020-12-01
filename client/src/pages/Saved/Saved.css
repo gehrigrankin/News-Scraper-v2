@@ -1,12 +1,8 @@
-.Home {
+.Saved {
     height: calc(100% - 3.25rem);
 }
 
-.Home .SearchForm {
-    height: 12.5%;
-}
-
-.Home .Container {
+.Saved .Container {
     height: 100%;
 
     padding: 10px;

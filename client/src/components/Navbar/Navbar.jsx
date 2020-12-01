@@ -11,8 +11,8 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Fragment>
             <Link className="navbar-item" to="/saved">Saved Articles</Link>
             <a onClick={logout} href="#!">
-                <span class="icon">
-                    <i class="fas fa-home"></i>
+                <span className="icon">
+                    <i className="fas fa-home"></i>
                 </span>{' '}
                 Logout
             </a>

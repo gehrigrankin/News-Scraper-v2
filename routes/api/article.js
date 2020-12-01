@@ -17,35 +17,43 @@ router.post(
         auth,
         [
             check('headline', 'Headline is required').not().isEmpty(),
-            check('summary', 'Summary is required').not().isEmpty(),
-            check('topic', 'Topic is required').not().isEmpty(),
+            check('text', 'Text is required').not().isEmpty(),
             check('src', 'Src is required').not().isEmpty(),
             check('time', 'Time is required').not().isEmpty()
         ]
     ],
     async (req, res) => {
         const errors = validationResult(req);
-
+        
         if (!errors.isEmpty()) {
+            console.log(errors)
             return res.status(400).json({ errors: errors.array() });
         }
 
         try {
             const {
                 headline,
-                summary,
+                headlineSummary,
+                text,
                 topic,
                 src,
-                time
+                time,
+                timeSummary,
+                author,
+                company
             } = req.body;
 
             const newArticle = new Article({
                 user: req.user.id,
                 headline,
-                summary,
+                headlineSummary,
+                text,
                 topic,
                 src,
-                time
+                time,
+                timeSummary,
+                author,
+                company
             })
 
             const article = await newArticle.save();
@@ -117,10 +125,6 @@ router.delete('/:id', auth, async (req, res) => {
 router.get('/user/:user_id', auth, async (req, res) => {
     try {
         const articles = await Article.find().sort({ date: -1 });
-
-        // if (!profile) {
-        //     return res.status(400).json({ msg: 'Profile not found' });
-        // }
 
         res.json(articles);
     } catch (err) {

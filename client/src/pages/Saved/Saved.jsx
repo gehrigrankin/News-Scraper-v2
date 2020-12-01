@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profile';
 
 import Container from '../../components/Container';
 import ResultsContainer from '../../components/ResultsContainer';
@@ -9,7 +8,7 @@ import ResultsContainer from '../../components/ResultsContainer';
 import './Saved.css'
 import API from '../../utils/API';
 
-const Saved = ({ getCurrentProfile, auth, profile }) => {
+const Saved = ({ auth }) => {
     const [savedResults, setSavedResults] = useState([])
     const [selectedResult, setSelectedResult] = useState({})
 
@@ -21,14 +20,7 @@ const Saved = ({ getCurrentProfile, auth, profile }) => {
                 .then(res => {
                     console.log(res)
                     setSavedResults(res.data)
-
-                    API.getSelectedArticle(res.data[0])
-                        .then(res => {
-                            console.log("selected RES", res);
-
-                            setSelectedResult(res.data)
-                        })
-                        .catch(err => console.log(err))
+                    setSelectedResult(res.data[0])
                 })
         }
     }, [auth.user])
@@ -39,6 +31,15 @@ const Saved = ({ getCurrentProfile, auth, profile }) => {
         setSelectedResult(savedResults.find(result => result.src == src))
     }
 
+    const deleteArticle = () => {
+        const results = savedResults.filter(result => result._id != selectedResult._id)
+        
+        setSavedResults(results)
+        setSelectedResult(results[0])
+
+        API.deleteArticle(selectedResult._id);
+    }
+
     return (
         <div className="Saved">
             <Container className="Container">
@@ -47,6 +48,7 @@ const Saved = ({ getCurrentProfile, auth, profile }) => {
                     results={savedResults}
                     selected={selectedResult}
                     handleSelected={handleSelected}
+                    deleteArticle={deleteArticle}
                 />
             </Container>
         </div>
@@ -54,14 +56,11 @@ const Saved = ({ getCurrentProfile, auth, profile }) => {
 }
 
 Saved.propTypes = {
-    getCurrentProfile: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    profile: state.profile
+    auth: state.auth
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(Saved);
+export default connect(mapStateToProps)(Saved);

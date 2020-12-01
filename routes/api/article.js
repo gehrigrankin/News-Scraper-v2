@@ -126,6 +126,7 @@ router.get('/user/:user_id', auth, async (req, res) => {
     try {
         const articles = await Article.find().sort({ date: -1 });
 
+        console.log(articles)
         res.json(articles);
     } catch (err) {
         console.error(err.message);

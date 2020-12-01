@@ -16,6 +16,7 @@ const ResultsContainer = (props) => {
             />
             <SelectedResult 
                 selected={props.selected}
+                deleteArticle={props.deleteArticle}
             />
         </div>
     )

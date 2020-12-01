@@ -13,10 +13,10 @@ export default {
     return axios.post("/api/azc/selected", {selectedResult})
   },
   saveArticle: function(articleData) {
-    console.log("=====================")
-    console.log(articleData)
-    console.log("=====================")
     axios.post("/api/article", articleData);
+  },
+  deleteArticle: function(articleId) {
+    axios.delete(`/api/article/${articleId}`);
   },
   // getScrapedArticle: function(id) {
   //   return axios.get(`/api/articles/${id}/scraped`)

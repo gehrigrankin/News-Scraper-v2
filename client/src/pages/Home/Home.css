@@ -1,5 +1,6 @@
 .Home {
-    height: 100%;
+    height: 100vh;
+    padding-top: 3.25rem;
 }
 
 .Home .SearchForm {

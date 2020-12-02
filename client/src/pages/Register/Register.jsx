@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
+import Alert from "../../components/Alert";
+
 import './Register.scss';
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
@@ -40,7 +42,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     return (
         <div className="Register has-background-link">
             <div className="column is-full">
-                <h1 class="title is-1 mt-5 has-text-white">
+                <h1 className="title is-1 mt-5 has-text-white">
                     <FontAwesomeIcon className="has-text-info" icon={faNewspaper} />
                     AZ Central Scraper
                 </h1>
@@ -49,8 +51,9 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
             <div className="column box-shadow window has-background-white is-half-tablet">
                 <form onSubmit={e => onSubmit(e)}>
+                    <Alert />
                     <div className="field">
-                        <label className="label" for="name">Name: </label>
+                        <label className="label" htmlFor="name">Name: </label>
                         <div className="control">
                             <input
                                 className="input"
@@ -64,7 +67,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label" for="email">Email: </label>
+                        <label className="label" htmlFor="email">Email: </label>
                         <div className="control">
                             <input
                                 className="input"
@@ -78,7 +81,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label" for="password">Password: </label>
+                        <label className="label" htmlFor="password">Password: </label>
                         <div className="control">
                             <input
                                 className="input"
@@ -93,7 +96,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label" for="password2">Confirm Password: </label>
+                        <label className="label" htmlFor="password2">Confirm Password: </label>
                         <div className="control">
                             <input
                                 className="input"

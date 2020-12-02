@@ -1,8 +1,9 @@
 import React from 'react';
 
-import "./ResultsList.css";
 import Field from '../Container/Field';
 import Result from './Result'
+
+import "./ResultsList.css";
 
 const ResultsList = props => {
     return (
@@ -16,8 +17,6 @@ const ResultsList = props => {
                     if (!article.time) {
                         return;
                     }
-
-                    console.log(article)
 
                     return (
                         <Result 

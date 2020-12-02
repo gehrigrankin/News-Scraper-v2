@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Landing from "./pages/Landing";
 import Home from "./pages/Home";
 import Saved from "./pages/Saved";
-import Alert from "./components/Alert";
 import PrivateRoute from "./components/routing/PrivateRoute"
 
 //Redux

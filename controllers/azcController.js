@@ -1,8 +1,5 @@
 const axios = require("axios");
 var cheerio = require("cheerio");
-// const db = require("../models");
-
-let resultsArr = [];
 
 module.exports = {
     findAll: async (req, res) => {

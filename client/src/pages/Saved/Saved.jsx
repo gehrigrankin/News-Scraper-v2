@@ -6,20 +6,18 @@ import Navbar from '../../components/Navbar'
 import Container from '../../components/Container';
 import ResultsContainer from '../../components/ResultsContainer';
 
-import './Saved.css'
 import API from '../../utils/API';
+
+import './Saved.css'
 
 const Saved = ({ auth }) => {
     const [savedResults, setSavedResults] = useState([])
     const [selectedResult, setSelectedResult] = useState({})
 
-    console.log(auth)
-
     useEffect(() => {
         if (auth.user) {
             API.getSavedArticles(auth.user._id)
                 .then(res => {
-                    console.log(res)
                     setSavedResults(res.data)
                     setSelectedResult(res.data[0])
                 })
@@ -34,7 +32,7 @@ const Saved = ({ auth }) => {
 
     const deleteArticle = () => {
         const results = savedResults.filter(result => result._id != selectedResult._id)
-        
+
         setSavedResults(results)
         setSelectedResult(results[0])
 
@@ -45,12 +43,12 @@ const Saved = ({ auth }) => {
         <div className="Saved">
             <Navbar />
             <Container className="Container">
-                {/* <SearchFilter /> */}
                 <ResultsContainer
                     results={savedResults}
                     selected={selectedResult}
                     handleSelected={handleSelected}
                     deleteArticle={deleteArticle}
+                    topic="Saved Articles"
                 />
             </Container>
         </div>

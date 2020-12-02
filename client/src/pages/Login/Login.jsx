@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
+import Alert from "../../components/Alert";
+
 import './Login.scss';
 
 const Login = ({ login, isAuthenticated }) => {
@@ -33,7 +35,7 @@ const Login = ({ login, isAuthenticated }) => {
     return (
         <div className="Login has-background-link">
             <div className="column is-full">
-                <h1 class="title is-1 mt-5 has-text-white">
+                <h1 className="title is-1 mt-5 has-text-white">
                     <FontAwesomeIcon className="has-text-info" icon={faNewspaper} />
                     AZ Central Scraper
                 </h1>
@@ -41,8 +43,9 @@ const Login = ({ login, isAuthenticated }) => {
 
             <div className="column box-shadow window has-background-white is-half-tablet">
                 <form onSubmit={e => onSubmit(e)}>
+                    <Alert />
                     <div className="field">
-                        <label className="label" for="email">Email: </label>
+                        <label className="label" htmlFor="email">Email: </label>
                         <div className="control">
                             <input
                                 className="input"
@@ -56,7 +59,7 @@ const Login = ({ login, isAuthenticated }) => {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label" for="password">Password: </label>
+                        <label className="label" htmlFor="password">Password: </label>
                         <div className="control">
                             <input
                                 className="input"

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./ResultsContainer.css"
+import "./ResultsContainer.css";
 
 import ResultsList from '../../components/ResultsList';
 import SelectedResult from '../../components/SelectedResult';

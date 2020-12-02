@@ -4,8 +4,6 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Article = require('../../models/Article');
-const Profile = require('../../models/Profile');
-const User = require('../../models/User');
 
 
 // @route POST api/article
@@ -26,7 +24,6 @@ router.post(
         const errors = validationResult(req);
         
         if (!errors.isEmpty()) {
-            console.log(errors)
             return res.status(400).json({ errors: errors.array() });
         }
 
@@ -124,15 +121,12 @@ router.delete('/:id', auth, async (req, res) => {
 // @access Private
 router.get('/user/:user_id', auth, async (req, res) => {
     try {
-        const articles = await Article.find().sort({ date: -1 });
-
-        console.log(articles)
+        const { user_id } = req.params;
+        const articles = await Article.find({user: user_id}).sort({ date: -1 });
+        
         res.json(articles);
     } catch (err) {
         console.error(err.message);
-        // if(err.kind == 'ObjectId') {
-        //     return res.status(400).json({ msg: 'Profile not found' });
-        // }
 
         res.status(500).send('Server Error')
     }

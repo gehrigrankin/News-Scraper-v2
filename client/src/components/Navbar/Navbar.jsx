@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
@@ -10,6 +10,8 @@ import { faNewspaper, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome
 import "./Navbar.scss";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+    const [isActive, setIsActive] = useState(false);
+
     const authLinks = (
         <Fragment>
             <div className="navbar-start">
@@ -17,10 +19,10 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 <Link className="navbar-item" to="/saved">Saved Articles</Link>
             </div>
             <div className="navbar-end">
-                <a className="navbar-item" onClick={logout} href="#!">
+                <Link className="navbar-item" onClick={logout} to="/">
                     <FontAwesomeIcon className="has-text-info" icon={faSignOutAlt} />
                     Logout
-                </a>
+                </Link>
             </div>
         </Fragment>
     )
@@ -44,20 +46,28 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     )
 
     return (
-        <nav className="navbar is-info">
+        <nav className="navbar px-5 is-info">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/home">
                     <FontAwesomeIcon className="has-text-info" icon={faNewspaper} size="lg" />
                     <span className="navbar-title">AZ Central Scraper</span>
                 </Link>
 
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
+                <a 
+                    role="button"
+                    className={`navbar-burger ${isActive ? 'is-active' : ''}`}
+                    aria-label="menu"
+                    aria-expanded="false"
+                    onClick={() => {
+                        setIsActive(!isActive);
+                    }}
+                >
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div className="navbar-menu">
+            <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
                 {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
             </div>
 

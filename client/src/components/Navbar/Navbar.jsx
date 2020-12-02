@@ -4,33 +4,51 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-import "./Navbar.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faNewspaper, faUserPlus, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+
+import "./Navbar.scss";
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const authLinks = (
         <Fragment>
-            <Link className="navbar-item" to="/saved">Saved Articles</Link>
-            <a onClick={logout} href="#!">
-                <span className="icon">
-                    <i className="fas fa-home"></i>
-                </span>{' '}
-                Logout
-            </a>
+            <div className="navbar-start">
+                <Link className="navbar-item" to="/home">Home</Link>
+                <Link className="navbar-item" to="/saved">Saved Articles</Link>
+            </div>
+            <div className="navbar-end">
+                <a className="navbar-item" onClick={logout} href="#!">
+                    <FontAwesomeIcon className="has-text-info" icon={faSignOutAlt} />
+                    Logout
+                </a>
+            </div>
         </Fragment>
     )
 
     const guestLinks = (
         <Fragment>
-            <Link className="navbar-item" to="/register">Sign Up</Link>
-            <Link className="navbar-item" to="/login">Login</Link>
+            <div className="navbar-start">
+                <Link className="navbar-item" to="/home">Home</Link>
+            </div>
+            <div className="navbar-end">
+                <Link className="navbar-item" to="/register">
+                    <FontAwesomeIcon className="has-text-info" icon={faUserPlus} />
+                    Sign Up
+                </Link>
+                <Link className="navbar-item" to="/">
+                    <FontAwesomeIcon className="has-text-info" icon={faSignInAlt} />
+                    Login
+                </Link>
+            </div>
         </Fragment>
     )
 
     return (
-        <nav className="navbar is-success">
+        <nav className="navbar is-info">
             <div className="navbar-brand">
-                <Link className="navbar-item" to="/">
-                    AZ Central Scraper
+                <Link className="navbar-item" to="/home">
+                    <FontAwesomeIcon className="has-text-info" icon={faNewspaper} size="lg" />
+                    <span className="navbar-title">AZ Central Scraper</span>
                 </Link>
 
                 <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -40,10 +58,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 </a>
             </div>
             <div className="navbar-menu">
-                <div className="navbar-end">
-                    <Link className="navbar-item" to="/home">Home</Link>
-                    { !loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>) }
-                </div>
+                {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
             </div>
 
         </nav>

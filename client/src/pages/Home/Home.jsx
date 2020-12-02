@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 
+import Navbar from '../../components/Navbar'
+import SearchForm from '../../components/SearchForm';
+import Container from '../../components/Container';
+import ResultsContainer from '../../components/ResultsContainer';
+
 import "./Home.css"
 
 import API from "../../utils/API";
 
-import SearchForm from '../../components/SearchForm';
-import Container from '../../components/Container';
-import ResultsContainer from '../../components/ResultsContainer';
 // import SearchFilter from '../../components/SearchFilter';
 
 class Home extends Component {
@@ -111,6 +113,7 @@ class Home extends Component {
                     handleArticleSave={this.handleArticleSave}
                     submit={this.handleFormSubmit}
                 /> */}
+                <Navbar />
                 <Container className="Container">
                     {/* <SearchFilter /> */}
                     <ResultsContainer

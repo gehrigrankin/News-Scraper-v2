@@ -14,7 +14,14 @@
 }
 
 .Result .time {
-    color: hsl(91, 50%, 39%);
     font-weight: normal;
     font-size: 16px;
+}
+
+.selected {
+    background-color: #3298dc;
+
+    p {
+        color: white !important;
+    }
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './Result.css'
+import './Result.scss'
 
 const Result = (props) => {
-    // console.log(props)
+    const selected = props.selected.src === props.src ? 'selected' : null
     return (
-        <div className="Result" data-src={props.src} onClick={props.handleSelected}>
-            <p className="time">
+        <div className={`Result ${selected}`} data-src={props.src} onClick={props.handleSelected}>
+            <p className="time has-text-link">
                {props.topic} - {props.date}
             </p>
             <p className="title is-5">

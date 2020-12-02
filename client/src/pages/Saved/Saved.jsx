@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Navbar from '../../components/Navbar'
 import Container from '../../components/Container';
 import ResultsContainer from '../../components/ResultsContainer';
 
@@ -42,6 +43,7 @@ const Saved = ({ auth }) => {
 
     return (
         <div className="Saved">
+            <Navbar />
             <Container className="Container">
                 {/* <SearchFilter /> */}
                 <ResultsContainer

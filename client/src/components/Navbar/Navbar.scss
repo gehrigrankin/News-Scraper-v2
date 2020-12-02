@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
+.navbar {
+    background-color: #3273dc !important;
+
+    .svg-inline--fa {
+        margin-right: .5rem;
+    }
+
+    .navbar-title {
+        font-family: 'Syne Mono', monospace;
+        font-weight: 700;
+        font-size: 1.5em;
+    }
+}

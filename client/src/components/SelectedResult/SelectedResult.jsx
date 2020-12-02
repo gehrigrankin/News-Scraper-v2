@@ -70,11 +70,29 @@ const SelectedResult = (props) => {
         }
     }
 
+    console.log(selected)
+    if (selected.text && selected.text.length === 0) {
+        return (
+            <Field classProp="SelectedResult article-not-found">
+                <div className="header">
+                    <h4 className="title is-4">Article cannot be scraped</h4>
+                    
+
+                    <div className="links mt-4">
+                        <p>Visit the article here: </p>
+                        <a target="_blank" rel="noreferrer" href={src}>{src}</a>
+                    </div>
+                </div>
+            </Field>
+        )
+    }
+
     return (
         <Field classProp="SelectedResult has-text-left">
             <div className="header">
                 <p className="title">{selected.headlineSummary}</p>
-                <p className="time has-text-right">{selected.topic} | {selected.timeSummary}</p>
+                <p className="time has-text-right has-text-link"><b>{selected.topic}</b> | {selected.timeSummary}</p>
+                <p className="has-text-right has-text-info"><b>{selected.author}</b> {selected.company}</p>
                 {displayBtn()}
             </div>
             <hr />

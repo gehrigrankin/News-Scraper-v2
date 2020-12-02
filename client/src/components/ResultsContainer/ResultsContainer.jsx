@@ -13,6 +13,7 @@ const ResultsContainer = (props) => {
                 topic={props.topic}
                 timeRange={props.timeRange}
                 handleSelected={props.handleSelected}
+                selected={props.selected}
             />
             <SelectedResult 
                 selected={props.selected}

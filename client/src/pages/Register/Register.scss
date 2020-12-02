@@ -1,5 +1,21 @@
 .Register {
+    height: 100vh;
+
     form {
-        margin: 5rem;  
+        margin: 1rem 3rem;  
     }
+
+    .title {
+        font-family: 'Syne Mono', monospace;
+        font-weight: 700;
+    }
+
+    .window {
+        margin: 10vh auto;
+        max-width: 580px;
+    }
+}
+
+.svg-inline--fa {
+    margin-right: 1rem;
 }

@@ -31,13 +31,11 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <Navbar />
-          <Alert />
+          {/* <Alert /> */}
           <Switch>
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/" component={Login} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
             <PrivateRoute exact path="/saved" component={Saved} />
             {/* 
           <Route component={NoMatch} /> */}

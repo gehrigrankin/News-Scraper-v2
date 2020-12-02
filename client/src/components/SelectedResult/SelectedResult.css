@@ -14,8 +14,6 @@
     float: left;
 } */
 .SelectedResult .time {
-    color: hsl(91, 50%, 39%);
-    font-weight: 600;
     font-size: 16px;
 }
 .SelectedResult .article,  .SelectedResult .article .link {
@@ -35,4 +33,8 @@
     margin: 1rem 0;
 
     background-color: hsl(0,0%,90%);
+}
+
+.article-not-found {
+    
 }

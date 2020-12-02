@@ -14,7 +14,6 @@ const SelectedResult = (props) => {
         if (props.auth.user && currentPath === '/home') {
             API.getSavedArticles(props.auth.user._id)
                 .then(res => {
-                    console.log(props.selected)
                     setIsArticleSaved(res.data.find(result => result.src === props.selected.src) !== undefined)
                 })
         }

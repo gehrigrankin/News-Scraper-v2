@@ -54,6 +54,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
                 </Link>
 
                 <a 
+                    href="#!"
                     role="button"
                     className={`navbar-burger ${isActive ? 'is-active' : ''}`}
                     aria-label="menu"

@@ -46,7 +46,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     )
 
     return (
-        <nav className="navbar px-5 is-info">
+        <nav className="navbar is-fixed-top px-5 is-info">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/home">
                     <FontAwesomeIcon className="has-text-info" icon={faNewspaper} size="lg" />
